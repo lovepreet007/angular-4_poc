@@ -1,0 +1,11 @@
+.ag-header {
+    position:relative;
+    height:35px;
+    padding-top:5px;
+    border-bottom:1px solid 3px solid red;
+    background-color: red
+
+}
+.ag-body{
+    top:35px;
+}

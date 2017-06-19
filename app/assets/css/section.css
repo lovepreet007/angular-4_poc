@@ -1,0 +1,25 @@
+.wrap {
+    width: 100%;
+    overflow:auto;
+}
+.fleft {
+    float:left; 
+}
+.box {
+    width: 33.33%;
+    padding: 0 15px;
+    height: 700px;
+    color: #fff;
+}
+.comp1 {
+    background: #475047;
+}
+.comp2 {
+    background: #000;
+}
+.comp3 {
+    background: #475047;
+}
+button, input {
+    color: #000;
+}

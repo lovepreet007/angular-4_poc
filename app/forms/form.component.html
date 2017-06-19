@@ -1,0 +1,63 @@
+<div class="container">
+    <h3>Angularjs 2 Forms</h3>
+    <h3>{{ticks}}</h3>
+    <form #form='ngForm' (submit)="onSubmit(form)" novalidate>
+        <div class="form-group has-error" [class.has-error]='firstName.invalid && firstName.dirty'>
+            <label class="control-label" for="firstNameId">First Name :</label>
+            <input #firstName='ngModel' pattern="...+" id="firstNameId" type="text" class="form-control" required placeholder="First Name"
+                name="firstName" [ngModel]='model.firstName' (ngModelChange)='firstNameToUpperCase($event)' />
+        </div>
+        <div *ngIf='firstName.invalid && firstName.dirty' class="alert alert-danger" role="alert">* First name is required, must be atleast 3 characters.</div>
+        <div class="form-group">
+            <label class="control-label" for="lastNameId">Last Name :</label>
+            <input #lastName='ngModel' id="lastNameId" type="text" class="form-control" required placeholder="Last Name" name="lastName"
+                [(ngModel)]='model.lastName' (focusout)='timerFunction($event)' />
+        </div>
+        <div *ngIf='lastName.invalid && lastName.dirty' class="alert alert-danger" role="alert">* Last name is required.</div>
+        <div class="checkbox">
+            <label>
+        <input type="checkbox" name="is-full-time" [(ngModel)]='model.isFullTime' (focusout)='timerFunction($event)'> Full time Employee
+        </label>
+        </div>
+        <label>Payment Type</label>
+        <div class="radio">
+            <label>
+        <input type="radio" name="paymentType" value="w2" checked [(ngModel)]='model.paymentType' (focusout)='timerFunction($event)'> 
+        w2
+        </label>
+        </div>
+        <div class="radio">
+            <label>
+        <input type="radio" name="paymentType" value="1099" [(ngModel)]='model.paymentType' (focusout)='timerFunction($event)'> 
+        1099
+        </label>
+        </div>
+        <div class="form-group" [class.has-error]="hasPrimaryLanguageSelected">
+            <label for="primaryLanguageId" class="control-label">Primary Language</label>
+            <select class="form-control" #primaryLanguage name="primaryLanguage" [(ngModel)]='model.primaryLanguage' (focusout)='timerFunction($event)'
+                (blur)="validatePrimaryLanguage(primaryLanguage.value)" (change)="validatePrimaryLanguage(primaryLanguage.value)">
+                 <option value="default">Select primary language....</option> 
+                 <option *ngFor='let lang of language'>{{lang}}</option>    
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="dateId">Date Hired</label>
+            <input id="dateId" type="date" class="form-control" />
+
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]='form.invalid'>Ok</button>
+    </form>
+    <!--<h3>Classes</h3>
+    <h4>{{firstName.className}}</h4>-->
+
+
+    <!--Model :{{model|json}} Angular : {{form.value|json}}-->
+
+
+</div>
+
+<div>
+    <ag-grid-angular #agGrid style="width: 500px; height: 150px;" class="ag-fresh" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+        [rowData]="rowData">
+    </ag-grid-angular>
+</div>

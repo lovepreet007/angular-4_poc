@@ -1,0 +1,1 @@
+{"version":3,"file":"employee.model.js","sourceRoot":"","sources":["employee.model.ts"],"names":[],"mappings":";;AAAA;IACI,kBACW,SAAiB,EACjB,QAAgB,EAChB,UAAmB,EACnB,WAAkB,EAClB,eAAsB;QAJtB,cAAS,GAAT,SAAS,CAAQ;QACjB,aAAQ,GAAR,QAAQ,CAAQ;QAChB,eAAU,GAAV,UAAU,CAAS;QACnB,gBAAW,GAAX,WAAW,CAAO;QAClB,oBAAe,GAAf,eAAe,CAAO;IAEjC,CAAC;IACL,eAAC;AAAD,CAAC,AATD,IASC;AATY,4BAAQ"}

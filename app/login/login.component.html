@@ -1,0 +1,24 @@
+<link href="/app/assets/css/login.css" rel="stylesheet" />
+<div class="alert alert-danger" role="alert" *ngIf="loginStatus">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span> Login Unsuccessful !!
+</div>
+<div class="container">
+    <div class="wrap">
+        <form #form='ngForm' (submit)="onLogin(form)" novalidate class="form-signin">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label class="control-label" for="usernameId">Email address :</label>
+            <input type="text" id="usernameId" [(ngModel)]="model.usernameVm" name="usernameVm" class="form-control" placeholder="Email address"
+                required autofocus>
+            <label class="control-label" for="PasswordId">Password :</label>
+            <input type="password" id="PasswordId" [(ngModel)]="model.passwordVm" name="passwordVm" class="form-control" placeholder="Password"
+                required>
+            <div class="checkbox">
+                <label>
+            <input type="checkbox" value="rememberMeVm" [(ngModel)]="model.rememberMeVm" name="rememberMeVm"> Remember me
+          </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
