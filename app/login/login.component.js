@@ -22,7 +22,6 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.onLogin = function (ngForm) {
         var _this = this;
-        debugger;
         this.loginStatus = false;
         this._loginService.postLoginForm(this.model).subscribe(function (response) { return _this.loginResponse(response); });
     };

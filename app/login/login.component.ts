@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin(ngForm: NgForm): void {
-        debugger;
+
         this.loginStatus = false;
         this._loginService.postLoginForm(this.model).subscribe(response => this.loginResponse(response));
     }

@@ -29,12 +29,14 @@ var FormComponent = (function () {
         this.ticks = 0;
         this.timerStatus = false;
         this.alive = true;
+        this.loadingSpinner = false;
         // constructor(private formPoster: FormPoster, private http: Http, private _zone: NgZone, private _changeDetectorRef: ChangeDetectorRef) {
         // this.formPoster.getAllLanguages().subscribe(lang=>console.log('languages',lang));
         this.toastr.setRootViewContainerRef(vcr);
         this.initializingGridview();
     }
     FormComponent.prototype.ngOnInit = function () {
+        this.loadingSpinner = true;
         this.getTempInfo();
     };
     FormComponent.prototype.getTempInfo = function () {
@@ -53,7 +55,6 @@ var FormComponent = (function () {
         }
     };
     FormComponent.prototype.getEmployeeDetails = function (data) {
-        debugger;
         if (data != null) {
             this.rowData = data;
         }
@@ -101,15 +102,26 @@ var FormComponent = (function () {
         this.gridOptions = {
             onGridReady: function () {
                 _this.gridOptions.api.sizeColumnsToFit();
-            }
+                // this.gridOptions.columnApi.autoSizeColumns(['employeeId', 'firstName', 'isFullTime', 'lastName', 'paymentType', 'primaryLanguage', 'action']);
+                _this.gridOptions.editType = 'fullRow';
+                // this.gridOptions.api.showLoadingOverlay()
+            },
+            enableFilter: true,
+            singleClickEdit: true,
+            stopEditingWhenGridLosesFocus: true,
+            enableSorting: true,
+            // overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="spinner"></div>',
+            overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="fa fa-spinner fa-pulse fa-3x fa-fw"></div>',
+            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>'
         };
         this.columnDefs = [
-            { headerName: "Employee ID", field: "employeeId" },
-            { headerName: "First Name", field: "firstName" },
-            { headerName: "Is FullTime", field: "isFullTime" },
-            { headerName: "Last Name", field: "lastName" },
-            { headerName: "Payment Type", field: "paymentType" },
-            { headerName: "Primary Language", field: "primaryLanguage" }
+            { headerName: "Employee ID", field: "employeeId", suppressNavigable: true },
+            { headerName: "First Name", field: "firstName", editable: true },
+            { headerName: "Is FullTime", field: "isFullTime", editable: true },
+            { headerName: "Last Name", field: "lastName", editable: true },
+            { headerName: "Payment Type", field: "paymentType", editable: true },
+            { headerName: "Primary Language", field: "primaryLanguage", editable: true },
+            { headerName: "Action", field: "action" }
         ];
         this.GridViewEmplyeeDetails();
         // this.rowData = [
@@ -172,6 +184,7 @@ __decorate([
 FormComponent = __decorate([
     core_1.Component({
         templateUrl: 'app/forms/form.component.html',
+        styleUrls: ['app/assets/css/spinner.css']
     }),
     __metadata("design:paramtypes", [form_poster_service_1.FormPoster, core_1.ViewContainerRef, http_1.Http, ng2_toastr_1.ToastsManager, core_1.NgZone, core_1.ChangeDetectorRef])
 ], FormComponent);

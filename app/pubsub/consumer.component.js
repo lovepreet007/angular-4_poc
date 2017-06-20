@@ -19,12 +19,10 @@ var ConsumerComponent = (function () {
     }
     ConsumerComponent.prototype.ngOnInit = function () {
         var _this = this;
-        debugger;
         this.subscription = this.pubSubService.Stream.subscribe(function (customer) { console.log('subscribed'), _this.processCustomer(customer); });
     };
     // this.processCustomer(customer)
     ConsumerComponent.prototype.processCustomer = function (customer) {
-        debugger;
         this.processed.push(customer);
     };
     ConsumerComponent.prototype.stopProcessing = function () {

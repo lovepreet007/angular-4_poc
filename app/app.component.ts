@@ -36,7 +36,7 @@ export class AppComponent {
     constructor(public securityService: SecurityService) {
     }
     ngOnInit() {
-        debugger;
+     
         console.log('ngOnInit _securityService.AuthorizedCallback');
 
         if (window.location.hash) {

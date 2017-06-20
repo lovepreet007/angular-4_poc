@@ -55,7 +55,7 @@
       //       'ag-grid-ng2': 'vendor/ag-grid-ng2',
       // 'ag-grid': 'vendor/ag-grid',
 
-
+     'angular2-fontawesome': 'node_modules/angular2-fontawesome',
 
     },
 
@@ -80,7 +80,8 @@
       },
       'ag-grid': {
         defaultExtension: "js"
-      }
+      },
+      'angular2-fontawesome': { defaultExtension: 'js' }
     }
   });
 })(this);

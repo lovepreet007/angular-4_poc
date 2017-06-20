@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
     }
     ngOnInit(): void {
         console.log('Oninit');
-        debugger;
+
         // this._productService.getProducts().subscribe(p => this.products = p, e => this.errorMessage = <any>e)
           this.http.get('').subscribe(p => this.products = p.json(), e => this.errorMessage = <any>e)
         console.log(this.errorMessage);

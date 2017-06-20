@@ -21,12 +21,12 @@ export class Consumer2Component {
     constructor(private pubSubService: PubSubService) {
     }
     ngOnInit() {
-        debugger;
+
         this.subscription = this.pubSubService.Stream.subscribe(customer => { console.log('subscribed'), this.listOfCustomer(customer) });
     }
     // this.processCustomer(customer)
     listOfCustomer(customer: any) {
-        debugger;
+
         this.data.push(customer);
     }
     stopProcessing() {

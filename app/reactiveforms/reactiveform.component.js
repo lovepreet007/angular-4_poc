@@ -99,7 +99,6 @@ var ReactiveFormComponent = (function () {
     };
     //// hardcoded limits and if not require parameter
     // rangeRating(c: AbstractControl): { [key: string]: boolean } | null {
-    //     debugger;
     //     if (c.value != undefined && (isNaN(c.value) || c.value < 1 || c.value > 5)) {
     //         return { 'range': true };
     //     };

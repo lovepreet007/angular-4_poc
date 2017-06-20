@@ -17,7 +17,6 @@ var AppComponent = (function () {
         this.products = [1, 2, 3, 4, 5];
     }
     AppComponent.prototype.ngOnInit = function () {
-        debugger;
         console.log('ngOnInit _securityService.AuthorizedCallback');
         if (window.location.hash) {
             this.securityService.AuthorizedCallback();

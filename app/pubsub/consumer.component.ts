@@ -15,12 +15,12 @@ export class ConsumerComponent {
     constructor(private pubSubService: PubSubService) {
     }
     ngOnInit() {
-        debugger;
+
         this.subscription = this.pubSubService.Stream.subscribe(customer =>{console.log('subscribed'),this.processCustomer(customer)} );
     }
     // this.processCustomer(customer)
     processCustomer(customer: any) {
-        debugger;
+
         this.processed.push(customer);
     }
     stopProcessing() {

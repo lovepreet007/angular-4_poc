@@ -29,7 +29,6 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log('Oninit');
-        debugger;
         // this._productService.getProducts().subscribe(p => this.products = p, e => this.errorMessage = <any>e)
         this.http.get('').subscribe(function (p) { return _this.products = p.json(); }, function (e) { return _this.errorMessage = e; });
         console.log(this.errorMessage);

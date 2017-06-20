@@ -21,7 +21,7 @@ __decorate([
 ], FacebookComponent.prototype, "data", void 0);
 FacebookComponent = __decorate([
     core_1.Component({
-        template: "<link href=\"/app/assets/css/creative.css\" rel=\"stylesheet\" />\n      <h4>{{data.headline}}</h4> \n      {{data.body}}"
+        template: "<link href=\"/app/assets/css/creative.css\" rel=\"stylesheet\" />\n    <div class=\"job-ad\">\n      <h4>{{data.headline}}</h4> \n      \n      {{data.body}}\n    </div>"
     })
 ], FacebookComponent);
 exports.FacebookComponent = FacebookComponent;

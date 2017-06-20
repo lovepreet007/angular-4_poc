@@ -22,14 +22,12 @@ var LoginService = (function () {
     }
     LoginService.prototype.extractData = function (res) {
         var body = res.json();
-        debugger;
         return body || null;
     };
     LoginService.prototype.handleError = function (err) {
         return Observable_1.Observable.throw(err.statusText);
     };
     LoginService.prototype.postLoginForm = function (login) {
-        debugger;
         var body = JSON.stringify(login);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });

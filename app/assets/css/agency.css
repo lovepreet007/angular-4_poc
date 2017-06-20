@@ -414,3 +414,12 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #222222;
 }
+.spinner {     
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    top: 40%;
+    background: url(app/assets/images/spinner.gif) no-repeat;
+    position: relative;
+    background-size: 100%;
+} 

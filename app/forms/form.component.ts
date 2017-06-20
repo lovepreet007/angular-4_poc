@@ -11,7 +11,7 @@ import { GridOptions } from "../../node_modules/ag-grid/main";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 @Component({
     templateUrl: 'app/forms/form.component.html',
-    // styleUrls:['app/assets/css/agency.css']
+    styleUrls: ['app/assets/css/spinner.css']
 })
 
 export class FormComponent implements OnInit, OnDestroy {
@@ -26,6 +26,7 @@ export class FormComponent implements OnInit, OnDestroy {
     public gridOptions: GridOptions;
     public rowData: Employee[];
     public columnDefs: any[];
+    public loadingSpinner: boolean = false;
 
 
 
@@ -35,6 +36,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
+        this.loadingSpinner = true;
         this.getTempInfo();
     }
     getTempInfo() {
@@ -53,7 +55,7 @@ export class FormComponent implements OnInit, OnDestroy {
         }
     }
     getEmployeeDetails(data: Employee[]) {
-        debugger;
+
         if (data != null) {
             this.rowData = data;
         } else {
@@ -109,15 +111,26 @@ export class FormComponent implements OnInit, OnDestroy {
         this.gridOptions = {
             onGridReady: () => {
                 this.gridOptions.api.sizeColumnsToFit();
-            }
+                // this.gridOptions.columnApi.autoSizeColumns(['employeeId', 'firstName', 'isFullTime', 'lastName', 'paymentType', 'primaryLanguage', 'action']);
+                this.gridOptions.editType = 'fullRow';
+                // this.gridOptions.api.showLoadingOverlay()
+            },
+            enableFilter: true,
+            singleClickEdit: true,
+            stopEditingWhenGridLosesFocus: true,
+            enableSorting: true,
+            // overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="spinner"></div>',
+            overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="fa fa-spinner fa-pulse fa-3x fa-fw"></div>',
+            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>'
         };
         this.columnDefs = [
-            { headerName: "Employee ID", field: "employeeId" },
-            { headerName: "First Name", field: "firstName" },
-            { headerName: "Is FullTime", field: "isFullTime" },
-            { headerName: "Last Name", field: "lastName" },
-            { headerName: "Payment Type", field: "paymentType" },
-            { headerName: "Primary Language", field: "primaryLanguage" }
+            { headerName: "Employee ID", field: "employeeId", suppressNavigable: true },
+            { headerName: "First Name", field: "firstName", editable: true },
+            { headerName: "Is FullTime", field: "isFullTime", editable: true },
+            { headerName: "Last Name", field: "lastName", editable: true },
+            { headerName: "Payment Type", field: "paymentType", editable: true },
+            { headerName: "Primary Language", field: "primaryLanguage", editable: true },
+            { headerName: "Action", field: "action" }
         ];
         this.GridViewEmplyeeDetails();
         // this.rowData = [

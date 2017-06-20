@@ -56,8 +56,9 @@
 
 </div>
 
-<div>
-    <ag-grid-angular #agGrid style="width: 500px; height: 150px;" class="ag-fresh" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+<div  style="margin:10px; padding:10px;">
+    <!--<div *ngIf="loadingSpinner" class="spinner"></div>-->
+    <ag-grid-angular #agGrid style="width: 1200px; height: 150px;" class="ag-fresh" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
         [rowData]="rowData">
     </ag-grid-angular>
 </div>

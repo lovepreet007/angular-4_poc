@@ -12,6 +12,7 @@ import { httpFactory } from '../httpFactory/http.factory';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import {AgGridModule} from 'ag-grid-angular/main';
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 @NgModule({
     declarations: [FormComponent],
@@ -20,7 +21,7 @@ import {AgGridModule} from 'ag-grid-angular/main';
         useFactory: httpFactory,
         deps: [XHRBackend, RequestOptions]
     }],
-    imports: [FormsModule,BrowserAnimationsModule, AgGridModule.withComponents([]), ToastModule.forRoot(), HttpModule, FormRouteModule, BrowserModule]
+    imports: [FormsModule,BrowserAnimationsModule, AgGridModule.withComponents([]), ToastModule.forRoot(), HttpModule, Angular2FontawesomeModule, FormRouteModule, BrowserModule]
     // imports: [FormsModule, HttpModule, FormRouteModule, BrowserModule]
 })
 

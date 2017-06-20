@@ -18,6 +18,7 @@ var http_factory_1 = require("../httpFactory/http.factory");
 var animations_1 = require("@angular/platform-browser/animations");
 var ng2_toastr_1 = require("ng2-toastr/ng2-toastr");
 var main_1 = require("ag-grid-angular/main");
+var angular2_fontawesome_1 = require("angular2-fontawesome/angular2-fontawesome");
 var FormModule = (function () {
     function FormModule() {
     }
@@ -31,7 +32,7 @@ FormModule = __decorate([
                 useFactory: http_factory_1.httpFactory,
                 deps: [http_1.XHRBackend, http_1.RequestOptions]
             }],
-        imports: [forms_1.FormsModule, animations_1.BrowserAnimationsModule, main_1.AgGridModule.withComponents([]), ng2_toastr_1.ToastModule.forRoot(), http_1.HttpModule, form_routing_module_1.FormRouteModule, platform_browser_1.BrowserModule]
+        imports: [forms_1.FormsModule, animations_1.BrowserAnimationsModule, main_1.AgGridModule.withComponents([]), ng2_toastr_1.ToastModule.forRoot(), http_1.HttpModule, angular2_fontawesome_1.Angular2FontawesomeModule, form_routing_module_1.FormRouteModule, platform_browser_1.BrowserModule]
         // imports: [FormsModule, HttpModule, FormRouteModule, BrowserModule]
     })
 ], FormModule);

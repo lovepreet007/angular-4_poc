@@ -16,7 +16,7 @@ export class LoginService {
 
     extractData(res: Response): ResponseVm {
         let body = <ResponseVm>res.json();
-        debugger;
+
          return body || null;
        
     }
@@ -25,7 +25,7 @@ export class LoginService {
         return Observable.throw(err.statusText);
     }
     postLoginForm(login: Login): Observable<ResponseVm> {
-debugger;
+
         let body = JSON.stringify(login);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

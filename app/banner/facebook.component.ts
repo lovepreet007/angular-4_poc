@@ -4,8 +4,11 @@ import { WelcomeAdComponent } from '../home/welcomeAd.component';
 
 @Component({
     template: `<link href="/app/assets/css/creative.css" rel="stylesheet" />
+    <div class="job-ad">
       <h4>{{data.headline}}</h4> 
-      {{data.body}}`
+      
+      {{data.body}}
+    </div>`
 })
 export class FacebookComponent implements WelcomeAdComponent {
     @Input() data: any;
