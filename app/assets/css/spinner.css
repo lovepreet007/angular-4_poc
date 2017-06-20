@@ -1,0 +1,9 @@
+.spinner {     
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    top: 40%;
+    background: url(./images/spinner.gif) no-repeat;
+    position: relative;
+    background-size: 100%;
+} 
