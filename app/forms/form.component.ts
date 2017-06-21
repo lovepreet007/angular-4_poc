@@ -26,7 +26,8 @@ export class FormComponent implements OnInit, OnDestroy {
     public gridOptions: GridOptions;
     public rowData: Employee[];
     public columnDefs: any[];
-    public loadingSpinner: boolean = false;
+    public gridviewSuccess: string = '';
+    private divShow: boolean = false;
 
 
 
@@ -36,7 +37,6 @@ export class FormComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-        this.loadingSpinner = true;
         this.getTempInfo();
     }
     getTempInfo() {
@@ -55,7 +55,6 @@ export class FormComponent implements OnInit, OnDestroy {
         }
     }
     getEmployeeDetails(data: Employee[]) {
-
         if (data != null) {
             this.rowData = data;
         } else {
@@ -113,7 +112,12 @@ export class FormComponent implements OnInit, OnDestroy {
                 this.gridOptions.api.sizeColumnsToFit();
                 // this.gridOptions.columnApi.autoSizeColumns(['employeeId', 'firstName', 'isFullTime', 'lastName', 'paymentType', 'primaryLanguage', 'action']);
                 this.gridOptions.editType = 'fullRow';
-                // this.gridOptions.api.showLoadingOverlay()
+                this.gridOptions.context = {
+                    _this: this,
+                    // _http: this.http,
+
+                }
+                // this.gridOptions.api.showLoadingOverlay()               
             },
             enableFilter: true,
             singleClickEdit: true,
@@ -121,7 +125,11 @@ export class FormComponent implements OnInit, OnDestroy {
             enableSorting: true,
             // overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="spinner"></div>',
             overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="fa fa-spinner fa-pulse fa-3x fa-fw"></div>',
-            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>'
+            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>',
+
+            // set in grid options
+
+
         };
         this.columnDefs = [
             { headerName: "Employee ID", field: "employeeId", suppressNavigable: true },
@@ -130,7 +138,11 @@ export class FormComponent implements OnInit, OnDestroy {
             { headerName: "Last Name", field: "lastName", editable: true },
             { headerName: "Payment Type", field: "paymentType", editable: true },
             { headerName: "Primary Language", field: "primaryLanguage", editable: true },
-            { headerName: "Action", field: "action" }
+            {
+                headerName: "Action", field: "action", editable: false,
+                cellRenderer: this.buttonCellRenderer
+
+            }
         ];
         this.GridViewEmplyeeDetails();
         // this.rowData = [
@@ -138,6 +150,27 @@ export class FormComponent implements OnInit, OnDestroy {
         //     { make: "Ford", model: "Mondeo", price: 32000 },
         //     { make: "Porsche", model: "Boxter", price: 72000 }
         // ];
+    }
+    buttonCellRenderer = function (params) {
+        var button = document.createElement('button');
+        button.innerHTML = 'Delete';
+
+        button.addEventListener('click', function () {
+            console.log(params.data);
+            // document.getElementById('output').innerHTML = "You clicked on id " + params.data.id + " with name " + params.data.name      
+            params.context._this.http.post('/DeleteRow', JSON.stringify(params.data)).subscribe(data => {
+                console.log('success');
+                params.context._this.divShow = true;
+                params.context._this.gridviewSuccess = 'Deleted Successfully !!';
+                params.context._this.getEmployeeDetails(data.json())
+            },
+                err => console.log('error', err)
+            );
+        });
+        return button;
+    }
+    hel() {
+        alert('hel deleted');
     }
     GridViewEmplyeeDetails() {
         this.http.get('/GetEmployeeDetails').subscribe(data => { this.getEmployeeDetails(data.json()) },
@@ -167,6 +200,8 @@ export class FormComponent implements OnInit, OnDestroy {
             err => console.log('error', err)
         );
     }
+
+
     EmployeeSave(data: any, check: string) {
 
         if (check === 'permanent') {

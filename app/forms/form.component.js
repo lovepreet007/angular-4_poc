@@ -29,14 +29,29 @@ var FormComponent = (function () {
         this.ticks = 0;
         this.timerStatus = false;
         this.alive = true;
-        this.loadingSpinner = false;
+        this.gridviewSuccess = '';
+        this.divShow = false;
+        this.buttonCellRenderer = function (params) {
+            var button = document.createElement('button');
+            button.innerHTML = 'Delete';
+            button.addEventListener('click', function () {
+                console.log(params.data);
+                // document.getElementById('output').innerHTML = "You clicked on id " + params.data.id + " with name " + params.data.name      
+                params.context._this.http.post('/DeleteRow', JSON.stringify(params.data)).subscribe(function (data) {
+                    console.log('success');
+                    params.context._this.divShow = true;
+                    params.context._this.gridviewSuccess = 'Deleted Successfully !!';
+                    params.context._this.getEmployeeDetails(data.json());
+                }, function (err) { return console.log('error', err); });
+            });
+            return button;
+        };
         // constructor(private formPoster: FormPoster, private http: Http, private _zone: NgZone, private _changeDetectorRef: ChangeDetectorRef) {
         // this.formPoster.getAllLanguages().subscribe(lang=>console.log('languages',lang));
         this.toastr.setRootViewContainerRef(vcr);
         this.initializingGridview();
     }
     FormComponent.prototype.ngOnInit = function () {
-        this.loadingSpinner = true;
         this.getTempInfo();
     };
     FormComponent.prototype.getTempInfo = function () {
@@ -104,7 +119,10 @@ var FormComponent = (function () {
                 _this.gridOptions.api.sizeColumnsToFit();
                 // this.gridOptions.columnApi.autoSizeColumns(['employeeId', 'firstName', 'isFullTime', 'lastName', 'paymentType', 'primaryLanguage', 'action']);
                 _this.gridOptions.editType = 'fullRow';
-                // this.gridOptions.api.showLoadingOverlay()
+                _this.gridOptions.context = {
+                    _this: _this,
+                };
+                // this.gridOptions.api.showLoadingOverlay()               
             },
             enableFilter: true,
             singleClickEdit: true,
@@ -112,7 +130,7 @@ var FormComponent = (function () {
             enableSorting: true,
             // overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="spinner"></div>',
             overlayLoadingTemplate: '<div *ngIf="loadingSpinner" class="fa fa-spinner fa-pulse fa-3x fa-fw"></div>',
-            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>'
+            overlayNoRowsTemplate: '<span style="padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;">This is a custom \'no rows\' overlay</span>',
         };
         this.columnDefs = [
             { headerName: "Employee ID", field: "employeeId", suppressNavigable: true },
@@ -121,7 +139,10 @@ var FormComponent = (function () {
             { headerName: "Last Name", field: "lastName", editable: true },
             { headerName: "Payment Type", field: "paymentType", editable: true },
             { headerName: "Primary Language", field: "primaryLanguage", editable: true },
-            { headerName: "Action", field: "action" }
+            {
+                headerName: "Action", field: "action", editable: false,
+                cellRenderer: this.buttonCellRenderer
+            }
         ];
         this.GridViewEmplyeeDetails();
         // this.rowData = [
@@ -129,6 +150,9 @@ var FormComponent = (function () {
         //     { make: "Ford", model: "Mondeo", price: 32000 },
         //     { make: "Porsche", model: "Boxter", price: 72000 }
         // ];
+    };
+    FormComponent.prototype.hel = function () {
+        alert('hel deleted');
     };
     FormComponent.prototype.GridViewEmplyeeDetails = function () {
         var _this = this;
