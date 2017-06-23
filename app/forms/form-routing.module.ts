@@ -7,6 +7,7 @@ import { FormComponent } from './form.component';
 @NgModule({
     imports: [
         RouterModule.forChild([
+            // { path: '', redirectTo: 'forms', pathMatch: 'full'},
             { path: 'forms', component: FormComponent }           
         ])
     ],   

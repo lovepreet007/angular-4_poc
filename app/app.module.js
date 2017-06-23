@@ -31,6 +31,7 @@ var facebook_component_1 = require("./banner/facebook.component");
 var gmail_component_1 = require("./banner/gmail.component");
 var linkedin_component_1 = require("./banner/linkedin.component");
 var twitter_component_1 = require("./banner/twitter.component");
+var mongoform_module_1 = require("./mongodbsample/mongoform.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,7 +39,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, form_module_1.FormModule, product_module_1.ProductModule, sample_module_1.SampleModule, siblingcomponent_module_1.SiblingModule, pubsub_module_1.PubSubModule, forms_1.ReactiveFormsModule, reactiveform_module_1.ReactiveFormModule, login_module_1.LoginFormModule, app_routing_module_1.AppRouteModule],
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, product_module_1.ProductModule, sample_module_1.SampleModule, siblingcomponent_module_1.SiblingModule, pubsub_module_1.PubSubModule, forms_1.ReactiveFormsModule, reactiveform_module_1.ReactiveFormModule, login_module_1.LoginFormModule, form_module_1.FormModule, app_routing_module_1.AppRouteModule, mongoform_module_1.MongoFormModule],
         declarations: [app_component_1.AppComponent, welcome_directive_1.WelcomeDirective, welcome_banner_component_1.WelcomeBannerComponent, welcome_component_1.WelcomeComponent, facebook_component_1.FacebookComponent, gmail_component_1.GmailComponent, linkedin_component_1.LinkedinComponent, twitter_component_1.TwitterComponent, forbidden_component_1.ForbiddenComponent, unauthorized_component_1.UnauthorizedComponent],
         bootstrap: [app_component_1.AppComponent],
         entryComponents: [facebook_component_1.FacebookComponent, gmail_component_1.GmailComponent, linkedin_component_1.LinkedinComponent, twitter_component_1.TwitterComponent],

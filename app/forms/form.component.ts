@@ -36,7 +36,7 @@ export class FormComponent implements OnInit, OnDestroy {
     private sub: Subscription;
 
 
-    ngOnInit() {
+    ngOnInit() {      
         this.getTempInfo();
     }
     getTempInfo() {

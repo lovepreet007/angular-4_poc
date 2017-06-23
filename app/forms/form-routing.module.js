@@ -18,6 +18,7 @@ FormRouteModule = __decorate([
     core_1.NgModule({
         imports: [
             router_1.RouterModule.forChild([
+                // { path: '', redirectTo: 'forms', pathMatch: 'full'},
                 { path: 'forms', component: form_component_1.FormComponent }
             ])
         ],

@@ -19,8 +19,8 @@ import { SecurityService } from './services/security.service';
                     <li><a [routerLink]="['/sibling']">Sibling-Child</a></li>  
                     <li><a [routerLink]="['/pubsub']">Pub-Sub</a></li>
                     <li><a [routerLink]="['/reactive']">Reactive</a></li>    
-
-                     <li><a class="navigationLinkButton" *ngIf="!securityService.IsAuthorized()" (click)="Login()">Login</a></li>
+                    <li><a [routerLink]="['/mongo']">MongoForm</a></li>   
+                    <li><a class="navigationLinkButton" *ngIf="!securityService.IsAuthorized()" (click)="Login()">Login</a></li>
                     <li><a class="navigationLinkButton" *ngIf="securityService.IsAuthorized()" (click)="Logout()">Logout</a></li>               
                 </ul>
             </div>
@@ -42,13 +42,6 @@ export class AppComponent {
         if (window.location.hash) {
             this.securityService.AuthorizedCallback();
         }
-
-
-
-
-
-
-  
     }
 
     public Login() {

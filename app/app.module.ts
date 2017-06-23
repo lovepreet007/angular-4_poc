@@ -24,15 +24,15 @@ import { FacebookComponent } from './banner/facebook.component'
 import { GmailComponent } from './banner/gmail.component'
 import { LinkedinComponent } from './banner/linkedin.component'
 import { TwitterComponent } from './banner/twitter.component'
+import {MongoFormModule} from './mongodbsample/mongoform.module'
 
 
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, FormModule, ProductModule, SampleModule, SiblingModule, PubSubModule,ReactiveFormsModule, ReactiveFormModule, LoginFormModule, AppRouteModule],
+    imports: [BrowserModule, HttpModule,  ProductModule, SampleModule, SiblingModule, PubSubModule,ReactiveFormsModule, ReactiveFormModule, LoginFormModule,FormModule, AppRouteModule,MongoFormModule],
     declarations: [AppComponent, WelcomeDirective, WelcomeBannerComponent, WelcomeComponent, FacebookComponent, GmailComponent, LinkedinComponent, TwitterComponent, ForbiddenComponent, UnauthorizedComponent],
     bootstrap: [AppComponent],
     entryComponents: [FacebookComponent, GmailComponent, LinkedinComponent, TwitterComponent],
     providers: [WelcomeService,SecurityService, Configuration]
-
 })
 export class AppModule { }

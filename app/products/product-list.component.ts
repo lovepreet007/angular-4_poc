@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
         console.log('Oninit');
 
         // this._productService.getProducts().subscribe(p => this.products = p, e => this.errorMessage = <any>e)
-          this.http.get('').subscribe(p => this.products = p.json(), e => this.errorMessage = <any>e)
+        this.http.get('').subscribe(p => this.products = p.json(), e => this.errorMessage = <any>e)
         console.log(this.errorMessage);
     }
 
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
         this.pageTitle = 'ProductList :' + message;
     }
 
-    constructor(private _productService: ProductService,private http:Http) {
+    constructor(private _productService: ProductService, private http: Http) {
 
     }
 
